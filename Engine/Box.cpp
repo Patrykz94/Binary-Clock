@@ -1,4 +1,5 @@
 #include "Box.h"
+#include "Clock.h"
 
 Box::Box(Vec2 & pos_in)
 	:
@@ -7,18 +8,19 @@ Box::Box(Vec2 & pos_in)
 {
 }
 
-void Box::Draw(Vec2& pos_in, Graphics & gfx)
+void Box::Draw(Vec2& pos_in, Color& c, Graphics & gfx)
 {
+	Color col;
 	if (onState)
 	{
-		c = Colors::Blue;
+		col = c;
 	}
 	else
 	{
-		c = Colors::Gray;
+		col = Colors::MakeRGB(50, 50, 50);
 	}
 
-	gfx.DrawRect(RectF((pos*size) + pos_in, size, size).GetExpanded(-20.0f), c);
+	gfx.DrawRect(RectF((pos*size) + pos_in, size, size).GetExpanded(-20.0f), col);
 }
 
 void Box::SetState(bool state)

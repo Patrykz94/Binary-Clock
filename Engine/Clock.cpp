@@ -76,8 +76,15 @@ void Clock::Draw(Vec2& pos_in, Graphics & gfx)
 {
 	for (int i = 0; i < 20; i++)
 	{
-		box[i].Draw(pos_in, gfx);
+		box[i].Draw(pos_in, c[colorIndex], gfx);
 	}
+}
+
+void Clock::SetColor(int i)
+{
+	auto mod = [](int val, int mod) { return (val%mod + mod) % mod; };
+
+	colorIndex = mod(colorIndex+i, colNum);
 }
 
 std::string Clock::toBinary(int n, int len)

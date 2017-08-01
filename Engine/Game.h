@@ -50,4 +50,5 @@ private:
 	/********************************/
 	time_t t;
 	Clock clock;
+	bool keyReleased;
 };

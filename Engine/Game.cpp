@@ -25,7 +25,8 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	t(time(0))
+	t(time(0)),
+	keyReleased(false)
 {
 }
 
@@ -44,6 +45,22 @@ void Game::UpdateModel()
 	localtime_s(&timeInfo, &t);
 	
 	clock.Update(timeInfo.tm_hour, timeInfo.tm_min, timeInfo.tm_sec);
+
+	if (wnd.kbd.KeyIsPressed(VK_LEFT) && keyReleased)
+	{
+		clock.SetColor(-1);
+		keyReleased = false;
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_RIGHT) && keyReleased)
+	{
+		clock.SetColor(1);
+		keyReleased = false;
+	}
+	else if (!wnd.kbd.KeyIsPressed(VK_LEFT) && !wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		keyReleased = true;
+	}
+
 }
 
 void Game::ComposeFrame()
