@@ -23,6 +23,11 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Vec2.h"
+#include "RectF.h"
+#include "Box.h"
+#include <ctime>
+#include "Clock.h"
 
 class Game
 {
@@ -43,4 +48,6 @@ private:
 	/********************************/
 	/*  User Variables              */
 	/********************************/
+	time_t t;
+	Clock clock;
 };

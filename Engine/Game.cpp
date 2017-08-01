@@ -24,7 +24,8 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	t(time(0))
 {
 }
 
@@ -38,8 +39,14 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	t = time(0);
+	struct tm timeInfo;
+	localtime_s(&timeInfo, &t);
+	
+	clock.Update(timeInfo.tm_hour, timeInfo.tm_min, timeInfo.tm_sec);
 }
 
 void Game::ComposeFrame()
 {
+	clock.Draw(Vec2(100, 400), gfx);
 }
